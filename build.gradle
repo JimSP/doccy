@@ -1,0 +1,53 @@
+buildscript {
+	ext {
+		springBootVersion = '2.1.2.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+		jcenter()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'br.com.cafebinario'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
+
+repositories {
+	mavenCentral()
+	jcenter()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	runtimeOnly 'org.springframework.boot:spring-boot-devtools'
+	
+	compile group: 'org.modelmapper', name: 'modelmapper', version: '2.3.2'
+	
+	runtimeOnly 'com.h2database:h2'
+	
+	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
+	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
+	
+	compileOnly 'org.projectlombok:lombok'
+	
+	compile group: 'net.sourceforge.tess4j', name: 'tess4j', version: '4.3.1'
+	compile group: 'commons-io', name: 'commons-io', version: '2.4'
+	compile group: 'org.ghost4j', name: 'ghost4j', version: '1.0.1'
+	
+	compile group: 'com.github.jai-imageio', name: 'jai-imageio-core', version: '1.4.0'
+	
+	compile group: 'net.java.dev.jna', name: 'jna', version: '5.2.0'
+	
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.springframework.security:spring-security-test'
+}
