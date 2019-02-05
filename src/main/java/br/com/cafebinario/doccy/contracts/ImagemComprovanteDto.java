@@ -7,7 +7,7 @@ import lombok.Value;
 
 @Value
 @Builder(toBuilder=true)
-public class ImagemComprovanteDto<T extends Enum<?>> {
+public class ImagemComprovanteDto<T extends TipoDocumento> {
 	
 	private T tipoImagemComprovante;
 	private String ulr;

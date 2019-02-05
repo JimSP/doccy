@@ -14,12 +14,7 @@ public class CPFDto implements FormularioDocumentoDto{
 	}
 
 	@Override
-	public TipoDocumentoEnum getTipoDocumento() {
-		return TipoDocumentoEnum.CPF;
-	}
-
-	@Override
-	public ImagemComprovanteDto<TipoDocumentoEnum> getComprovanteDocumento() {
+	public ImagemComprovanteDto<TipoDocumento> getComprovanteDocumento() {
 		return comprovanteTipoDocumentoDto.getImagemComprovante();
 	}
 

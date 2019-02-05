@@ -25,12 +25,7 @@ public class RGDto implements FormularioDocumentoDto {
 	}
 
 	@Override
-	public TipoDocumentoEnum getTipoDocumento() {
-		return TipoDocumentoEnum.RG;
-	}
-
-	@Override
-	public ImagemComprovanteDto<TipoDocumentoEnum> getComprovanteDocumento() {
+	public ImagemComprovanteDto<TipoDocumento> getComprovanteDocumento() {
 		return comprovanteTipoDocumentoDto.getImagemComprovante();
 	}
 }

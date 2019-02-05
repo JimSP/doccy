@@ -8,5 +8,5 @@ import lombok.Data;
 public class ComprovanteTipoDocumentoDto {
 
 	private final String valor;
-	private final ImagemComprovanteDto<TipoDocumentoEnum> imagemComprovante;
+	private final ImagemComprovanteDto<TipoDocumento> imagemComprovante;
 }
