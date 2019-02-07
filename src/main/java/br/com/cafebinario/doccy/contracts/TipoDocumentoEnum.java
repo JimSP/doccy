@@ -10,5 +10,6 @@ public enum TipoDocumentoEnum implements TipoDocumento{
 	RNE,
 	PASSAPORTE,
 	CARTEIRA_TRABALHO,
-	PIS;
+	PIS,
+	DESCONHECIDA;
 }

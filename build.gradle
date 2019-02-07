@@ -27,7 +27,6 @@ repositories {
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
-	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	runtimeOnly 'org.springframework.boot:spring-boot-devtools'
 	
@@ -43,9 +42,7 @@ dependencies {
 	compile group: 'net.sourceforge.tess4j', name: 'tess4j', version: '4.3.1'
 	compile group: 'commons-io', name: 'commons-io', version: '2.4'
 	compile group: 'org.ghost4j', name: 'ghost4j', version: '1.0.1'
-	
 	compile group: 'com.github.jai-imageio', name: 'jai-imageio-core', version: '1.4.0'
-	
 	compile group: 'net.java.dev.jna', name: 'jna', version: '5.2.0'
 	
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'

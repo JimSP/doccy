@@ -1,6 +1,7 @@
 package br.com.cafebinario.doccy.ocr;
 
 import java.io.IOException;
+import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import org.junit.Test;
@@ -9,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import br.com.cafebinario.doccy.ocr.OCRDocumentos;
 import lombok.extern.slf4j.Slf4j;
 
 @RunWith(SpringRunner.class)
@@ -19,9 +19,16 @@ public class OCRDocumentosTest {
 
 	@Autowired
 	private OCRDocumentos ocrDocumentos;
-
+	
 	@Test
-	public void test() throws IOException {
-		log.info("m=test, ocrResult={}", ocrDocumentos.lerImagem(Paths.get("indice.jpeg").toFile()));
+	public void testReceita() throws IOException {
+		final byte[] imagem = Files.readAllBytes(Paths.get("/cafebinario/doccy/imagens/receita.png"));
+		log.info("m=testReceita, ocrResult={}", ocrDocumentos.lerImagem(imagem));
+	}
+	
+	@Test
+	public void testPlacas() throws IOException {
+		final byte[] imagem = Files.readAllBytes(Paths.get("/cafebinario/doccy/imagens/Placas.jpg"));
+		log.info("m=testPlacas, ocrResult={}", ocrDocumentos.lerImagem(imagem));
 	}
 }

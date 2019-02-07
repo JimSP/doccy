@@ -44,7 +44,7 @@ public class CriadorFormularioDocumentoDtoService {
 
 		final byte[] imagem = imagemComprovanteDto.getImagem();
 
-		final String imagemOCR = ocrDocumentos.lerImagem(null);
+		final String imagemOCR = ocrDocumentos.lerImagem(imagem);
 
 		final TipoDocumento tipoDocumento = imagemComprovanteDto.getTipoImagemComprovante();
 		final String valor = extrairValorDocumento(tipoDocumento, imagemOCR);

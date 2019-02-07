@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import br.com.cafebinario.doccy.contracts.FormularioDocumentoDto;
 import br.com.cafebinario.doccy.contracts.TipoDocumentoEnum;
+import br.com.cafebinario.doccy.ocr.OCRDocumentos;
 import br.com.cafebinario.doccy.services.CriadorFormularioDocumentoDtoService;
 
 @RestController
@@ -25,19 +26,30 @@ public class IdentificadorTipoDocumentoRestController {
 	@Autowired
 	private CriadorFormularioDocumentoDtoService criadorFormularioDocumentoDtoService;
 
+	@Autowired
+	private OCRDocumentos ocrDocumentos;
+
 	@PostMapping(path = "/identificadorDocumento", consumes = { MediaType.APPLICATION_JSON_UTF8_VALUE }, produces = {
 			MediaType.APPLICATION_JSON_UTF8_VALUE })
 	public @ResponseBody FormularioDocumentoDto post(
 			@Valid @RequestBody final FormularioDocumentoDto formularioDocumentoDto,
 			@RequestHeader(value = "UUID-Participante") final String uuidParticipante) {
-		
-		return criadorFormularioDocumentoDtoService
-				.criar(formularioDocumentoDto.getComprovanteDocumento(),
+
+		return criadorFormularioDocumentoDtoService.criar(formularioDocumentoDto.getComprovanteDocumento(),
 				uuidParticipante == null ? UUID.randomUUID() : UUID.fromString(uuidParticipante));
 	}
-	
-	@GetMapping(path="/obterUUID/{tipoDocumento}/{valor}")
-	public List<String> obterUUIDporTipoDOcumentoEValor(@PathVariable(name="tipoDocumento", required=true) final String tipoDocumento, @PathVariable(name="valor", required=true) final String valor) {
-		return criadorFormularioDocumentoDtoService.obterUUIDporTipoDOcumentoEValor(TipoDocumentoEnum.valueOf(tipoDocumento), valor);
+
+	@PostMapping(path = "/ocr", consumes = { MediaType.APPLICATION_JSON_UTF8_VALUE }, produces = {
+			MediaType.APPLICATION_JSON_UTF8_VALUE })
+	public @ResponseBody String post(@RequestBody final byte[] imagem) {
+		return ocrDocumentos.lerImagem(imagem);
+	}
+
+	@GetMapping(path = "/obterUUID/{tipoDocumento}/{valor}")
+	public List<String> obterUUIDporTipoDOcumentoEValor(
+			@PathVariable(name = "tipoDocumento", required = true) final String tipoDocumento,
+			@PathVariable(name = "valor", required = true) final String valor) {
+		return criadorFormularioDocumentoDtoService
+				.obterUUIDporTipoDOcumentoEValor(TipoDocumentoEnum.valueOf(tipoDocumento), valor);
 	}
 }
